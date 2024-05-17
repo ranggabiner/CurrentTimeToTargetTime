@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F50CF9C2BF702510024D78A /* jsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F50CF9B2BF702510024D78A /* jsonData.json */; };
 		8FACD9E52BF6ED9F00D059AF /* CurrentTimeToTargetTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FACD9E42BF6ED9F00D059AF /* CurrentTimeToTargetTimeApp.swift */; };
 		8FACD9E72BF6ED9F00D059AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FACD9E62BF6ED9F00D059AF /* ContentView.swift */; };
 		8FACD9E92BF6EDA100D059AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FACD9E82BF6EDA100D059AF /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F50CF9B2BF702510024D78A /* jsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonData.json; sourceTree = "<group>"; };
 		8FACD9E12BF6ED9F00D059AF /* CurrentTimeToTargetTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrentTimeToTargetTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FACD9E42BF6ED9F00D059AF /* CurrentTimeToTargetTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimeToTargetTimeApp.swift; sourceTree = "<group>"; };
 		8FACD9E62BF6ED9F00D059AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				8FACD9E42BF6ED9F00D059AF /* CurrentTimeToTargetTimeApp.swift */,
 				8FACD9E62BF6ED9F00D059AF /* ContentView.swift */,
+				8F50CF9B2BF702510024D78A /* jsonData.json */,
 				8FACD9E82BF6EDA100D059AF /* Assets.xcassets */,
 				8FACD9EA2BF6EDA100D059AF /* Preview Content */,
 			);
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FACD9EC2BF6EDA100D059AF /* Preview Assets.xcassets in Resources */,
+				8F50CF9C2BF702510024D78A /* jsonData.json in Resources */,
 				8FACD9E92BF6EDA100D059AF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

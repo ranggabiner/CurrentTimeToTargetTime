@@ -2,12 +2,19 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    // JSON data
-    let jsonData = """
-    {
-        "time": "09:55"
-    }
-    """.data(using: .utf8)!
+    // Load JSON data from file
+        let jsonData: Data
+
+        init() {
+            guard let url = Bundle.main.url(forResource: "jsonData", withExtension: "json") else {
+                fatalError("Could not find jsonData.json")
+            }
+            do {
+                jsonData = try Data(contentsOf: url)
+            } catch {
+                fatalError("Could not load jsonData.json: \(error)")
+            }
+        }
 
     // Target time
     @State private var targetTime: Date?
