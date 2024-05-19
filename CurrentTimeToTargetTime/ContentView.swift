@@ -3,18 +3,18 @@ import Combine
 
 struct ContentView: View {
     // Load JSON data from file
-        let jsonData: Data
+    let jsonData: Data
 
-        init() {
-            guard let url = Bundle.main.url(forResource: "jsonData", withExtension: "json") else {
-                fatalError("Could not find jsonData.json")
-            }
-            do {
-                jsonData = try Data(contentsOf: url)
-            } catch {
-                fatalError("Could not load jsonData.json: \(error)")
-            }
+    init() {
+        guard let url = Bundle.main.url(forResource: "jsonData", withExtension: "json") else {
+            fatalError("Could not find jsonData.json")
         }
+        do {
+            jsonData = try Data(contentsOf: url)
+        } catch {
+            fatalError("Could not load jsonData.json: \(error)")
+        }
+    }
 
     // Target time
     @State private var targetTime: Date?
@@ -33,26 +33,19 @@ struct ContentView: View {
 
             // Display the countdown
             Text("Countdown: \(countdown)")
-
-            // Define a button to set the target time
-            Button(action: {
-                // Parse JSON data
-                let json = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [String: String]
-                let targetTimeString = json["time"]!
-  
-                // Convert target time to Date object
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                self.targetTime = dateFormatter.date(from: targetTimeString)
-                self.updateTime() // Update the countdown immediately after setting the target time
-            }) {
-                Text("Set Target Time")
-            }
-
-            // Define a timer to update the current time and countdown every second
-            .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
-                self.updateTime()
-            }
+        }
+        .onAppear {
+            // Parse JSON data and set the target time
+            let json = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [String: String]
+            let targetTimeString = json["time"]!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            self.targetTime = dateFormatter.date(from: targetTimeString)
+            self.updateTime() // Update the countdown immediately after setting the target time
+        }
+        // Define a timer to update the current time and countdown every second
+        .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+            self.updateTime()
         }
     }
 
@@ -64,22 +57,21 @@ struct ContentView: View {
     }()
 
     // Define a function to update the current time and countdown
-    // Define a function to update the current time and countdown
     private func updateTime() {
         // Update current time
         self.currentTime = Date()
 
         // Calculate countdown
         guard let targetTime = targetTime else { return }
-        
+
         let currentComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: currentTime)
         let targetComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: targetTime)
-        
+
         let currentSeconds = (currentComponents.hour! * 3600) + (currentComponents.minute! * 60) + currentComponents.second!
         let targetSeconds = (targetComponents.hour! * 3600) + (targetComponents.minute! * 60) + targetComponents.second!
-        
+
         let remainingSeconds = targetSeconds - currentSeconds
-        
+
         if remainingSeconds >= 0 {
             let hours = remainingSeconds / 3600
             let minutes = (remainingSeconds % 3600) / 60
